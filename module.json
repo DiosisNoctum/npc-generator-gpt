@@ -1,29 +1,55 @@
 {
-  "name": "npc-generator-gpt",
-  "title": "NPC Generator (GPT)",
-  "description": "A module to generate detailed NPCs using GPT-4.",
-  "version": "1.0.1",
-  "author": "DiosisNoctum",
+  "id": "npc-generator-gpt",
+  "title": "NPC Generator (GPT) D&D 5e",
+  "description": "NPC generator for D&D5e powered by ChatGPT",
+  "version": "1.5.6",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "11.315"
+  },
+  "authors": [
+    {
+      "name": "DiosisNoctum",
+      "discord": "diosis.noctum"
+    }
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "2.3.0",
+          "verified": "2.3.1"
+        }
+      }
+    ]
+  },
+  "styles": [
+    "styles/npc-generator-gpt.css"
+  ],
   "scripts": [
     "scripts/npcGenGPTDataStructure.js",
     "scripts/npcGenGPTGenerateNPC.js"
   ],
-  "esmodules": [],
-  "styles": [],
-  "packs": [],
-  "languages": [],
+  "esmodules": ["scripts/npc-generator-gpt.js"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "it",
+      "name": "Italian",
+      "path": "lang/it.json"
+    }
+  ],
+  "bugs": "https://github.com/DiosisNoctum/npc-generator-gpt/issues",
+  "flags": {
+    "allowBugReporter": true
+  },
   "url": "https://github.com/DiosisNoctum/npc-generator-gpt",
   "manifest": "https://raw.githubusercontent.com/DiosisNoctum/npc-generator-gpt/main/module.json",
-  "download": "https://github.com/DiosisNoctum/npc-generator-gpt/archive/refs/heads/main.zip",
-  "relationships": {
-    "requires": [
-      {
-        "id": "foundryvtt",
-        "compatibility": {
-          "minimum": "0.8.0",
-          "verified": "0.8.9"
-        }
-      }
-    ]
-  }
+  "download": "https://github.com/DiosisNoctum/npc-generator-gpt/archive/refs/heads/main.zip"
 }
