@@ -13,7 +13,7 @@
   "packs": [],
   "languages": [],
   "url": "https://github.com/DiosisNoctum/npc-generator-gpt",
-  "manifest": "https://github.com/DiosisNoctum/npc-generator-gpt/raw/main/module.json",
+  "manifest": "https://raw.githubusercontent.com/DiosisNoctum/npc-generator-gpt/main/module.json",
   "download": "https://github.com/DiosisNoctum/npc-generator-gpt/archive/refs/heads/main.zip",
   "requires": [
     {
@@ -24,6 +24,6 @@
       }
     }
   ],
-  "dependencies": [],
+  "relationships.requires": [],
   "system": []
 }
