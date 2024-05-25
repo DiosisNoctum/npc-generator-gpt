@@ -16,7 +16,7 @@ export class npcGenGPTDataStructure {
     static commonerList = [
         'alchemist', 'baker', 'barkeep', 'blacksmith', 'butcher', 'carpenter',
         'cobbler', 'farmer', 'fisherman', 'guard', 'healer', 'hermit', 'hunter',
-        'innkeeper', 'merchant', 'messenger', 'miner', 'scribe', 'tailor'
+        'innkeeper', 'merchant', 'messenger', 'miner', 'scribe', 'tailor', 'custom'
     ];
     static npcList = [
         'barbarian', 'bard', 'cleric', 'druid', 'fighter', 'monk',
@@ -28,14 +28,14 @@ export class npcGenGPTDataStructure {
         if (!complete) return [0];
         const cr = [0, 0.125, 0.25, 0.5];
         for (let i = 1; i <= 30; i++) cr.push(i);
-        return cr
+        return cr;
     }
 
     static languagesList = [
         "aarakocra", "abyssal", "aquan", "auran", "celestial", "common", 
         "draconic", "druidic", "elvish", "deep", "cant", "giant", "gith",
         "gnoll", "gnomish", "goblin", "halfling", "ignan", "infernal",
-        "dwarvish", "orc", "primordial", "sylvan", "undercommon", "terran"
+        "dwarvish", "orc", "primordial", "sylvan", "undercommon", "terran", "custom"
     ];
 
     static raceData = {
@@ -45,7 +45,6 @@ export class npcGenGPTDataStructure {
         drow: { movement: { walk: 30 }, size: "med", senses: { darkvision: 120 }, lang: ["common", "elvish"] },
         gnome: { movement: { walk: 25 }, size: "sm", senses: { darkvision: 60 }, lang: ["common", "gnomish"] },
         halfelf: { movement: { walk: 30 }, size: "med", senses: { darkvision: 60 }, lang: ["common", "elvish"] },
-        halfling: { movement: { walk: 25 }, size: "sm", senses: { darkvision: 0 }, lang: ["common", "halfling"] },
         halfling: { movement: { walk: 25 }, size: "sm", senses: { darkvision: 0 }, lang: ["common", "halfling"] },
         halforc: { movement: { walk: 30 }, size: "med", senses: { darkvision: 60 }, lang: ["common", "orc"] },
         human: { movement: { walk: 30 }, size: "med", senses: { darkvision: 0 }, lang: ["common"] },
@@ -77,8 +76,8 @@ export class npcGenGPTDataStructure {
 
     static hpDice = { tiny: 4, sm: 6, med: 8, lg: 10, huge: 12, grg: 20 };
 
-    static getGenerateQueryTemplate(options) { 
-        return `${game.i18n.format("npc-generator-gpt.query.generate", { userQuery: options })}\n{
+    static getGenerateQueryTemplate(options, withAbilities) { 
+        let template = `${game.i18n.format("npc-generator-gpt.query.generate", { userQuery: options })}\n{
             "name": "${game.i18n.localize("npc-generator-gpt.query.name")}",
             "background": "${game.i18n.localize("npc-generator-gpt.query.background")}",
             "appearance": "${game.i18n.localize("npc-generator-gpt.query.appearance")}",
@@ -86,7 +85,18 @@ export class npcGenGPTDataStructure {
             "readaloud": "${game.i18n.localize("npc-generator-gpt.query.readaloud")}",
             "items": "${game.i18n.localize("npc-generator-gpt.query.equip")} (array)",
             "spells": "${game.i18n.localize("npc-generator-gpt.query.spells")} (array)",
-        }`
+            "uniqueMagicalWeapon": { "cr": ${options.cr} }
+        }`;
+        if (withAbilities) template += `, 
+            "strength": "${game.i18n.localize("npc-generator-gpt.query.strength")}",
+            "dexterity": "${game.i18n.localize("npc-generator-gpt.query.dexterity")}",
+            "constitution": "${game.i18n.localize("npc-generator-gpt.query.constitution")}",
+            "wisdom": "${game.i18n.localize("npc-generator-gpt.query.wisdom")}",
+            "intelligence": "${game.i18n.localize("npc-generator-gpt.query.intelligence")}",
+            "charisma": "${game.i18n.localize("npc-generator-gpt.query.charisma")}"
+        }`;
+        template += `}`;
+        return template;
     }
 
     static getEnhanceQueryTemplate(options) { 
@@ -95,6 +105,6 @@ export class npcGenGPTDataStructure {
             "appearance": "${game.i18n.localize("npc-generator-gpt.query.appearance")}",
             "roleplaying": "${game.i18n.localize("npc-generator-gpt.query.roleplaying")}",
             "readaloud": "${game.i18n.localize("npc-generator-gpt.query.readaloud")}"
-        }`
+        }`;
     }
 }
