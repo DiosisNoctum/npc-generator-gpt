@@ -15,15 +15,15 @@
   "url": "https://github.com/DiosisNoctum/npc-generator-gpt",
   "manifest": "https://raw.githubusercontent.com/DiosisNoctum/npc-generator-gpt/main/module.json",
   "download": "https://github.com/DiosisNoctum/npc-generator-gpt/archive/refs/heads/main.zip",
-  "requires": [
-    {
-      "id": "foundryvtt",
-      "compatibility": {
-        "minimum": "0.8.0",
-        "verified": "0.8.9"
+  "relationships": {
+    "requires": [
+      {
+        "id": "foundryvtt",
+        "compatibility": {
+          "minimum": "0.8.0",
+          "verified": "0.8.9"
+        }
       }
-    }
-  ],
-  "relationships.requires": [],
-  "system": []
+    ]
+  }
 }
